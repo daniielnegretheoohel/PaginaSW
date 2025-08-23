@@ -16,6 +16,7 @@
         }
 
         body {
+            zoom: 0.9; /* 90% */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: rgb(28, 46, 89);
             font-weight: 400;
@@ -55,14 +56,14 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
             z-index: 1000;
             padding: 0.5rem 1.5rem;
             transition: all 0.3s ease;
         }
 
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
@@ -991,44 +992,60 @@
             transform: scale(1.1);
         }
 
+
         /* Time Savings Chart Section */
         .time-savings-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        padding: 4rem 2rem;
+        background: 
+            linear-gradient(rgba(74,144,226,0.18), rgba(74,144,226,0.18)),
+            url('imagenes/ahorroconoohel.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
         }
 
         .time-savings-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.45); /* capa oscura uniforme */
+        z-index: 0;
         }
 
         .time-savings-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1; /* asegura que el contenido quede encima de la capa */
         }
 
         .time-savings-title {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #fff;
         }
 
         .time-savings-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.95;
+        color: #fff;
+        }
+
+        .time-savings-section p.cta-text {
+        margin-top: 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #fff; /* todo el texto en blanco */
+        }
+
+        .time-savings-section p.cta-text strong {
+        color: #4a90e2; /* resaltar "Únete..." en azul corporativo */
         }
 
         .chart-grid {
@@ -1068,49 +1085,71 @@
             line-height: 1.5;
         }
 
-        /* Footer */
-        .footer {
-            padding: 2.5rem 2rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            margin-top: 3rem;
-            background: linear-gradient(180deg, rgba(250,250,250,0.5) 0%, rgba(255,255,255,0.8) 100%);
+        .chart-item .chart-number {
+        color: #fff; /* el número grande */
+        font-weight: 700;
         }
 
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
+        .chart-item .chart-label {
+        color: #e6ebf5; /* un gris muy claro tirando a blanco */
+        font-weight: 600;
+        }
+
+        .chart-item .chart-description {
+        color: #d0d6e4; /* más clarito, para que se lea pero no opaque al label */
+        }
+
+
+        /* Footer */
+        .footer {
+        background: #f3f4f6;                /* gris suave distinto al fondo general */
+        padding: 2rem 1.5rem 1rem;
+        font-size: 0.9rem;
+        color: #1c2e59;
+        }
+
+        .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
         }
 
         .footer-column h4 {
-            color: #1c2e59;
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-            font-weight: 600;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
         }
 
-        .footer-column a {
-            display: block;
-            color: #666;
-            text-decoration: none;
-            margin: 0.4rem 0;
-            font-size: 0.85rem;
-            transition: color 0.3s;
+        .footer-column ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
         }
 
-        .footer-column a:hover {
-            color: #4a90e2;
+        .footer-column ul li {
+        margin-bottom: 0.4rem;
         }
 
+        .footer-column ul li a {
+        color: #1c2e59;
+        text-decoration: none;
+        font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+        color: #0066ff;
+        }
+
+        /* Línea superior clara pero más notoria */
         .footer-bottom {
-            text-align: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e0e0e0;
-            color: #999;
-            font-size: 0.8rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 2px solid #d1d5db;      /* línea más gruesa y visible */
+        text-align: center;
+        font-size: 0.85rem;
+        color: #4b5563;                     /* gris más oscuro para contraste */
         }
 
 
@@ -1158,10 +1197,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1rem;
+        padding: 1.1rem;
         text-align: center;
         transform: rotateY(180deg);
         font-size: 0.9rem;
+        }
+
+        .flip-back p {
+        font-size: 0.9rem;          /* más chico */
+        line-height: 1.55;          /* separación cómoda entre líneas */
+        margin: 0;
+        text-align: center;
+        color: #1c2e59;             /* tono legible */
+        word-break: normal;
+        hyphens: auto;              /* cortes de palabra elegantes si hace falta */
         }
 
         .flip-inner:hover .flip-front {
@@ -1178,12 +1227,42 @@
         text-align: center;
         }
 
+        .services-flip-grid .flip-back {
+        padding: 1.3rem !important;        /* más aire interno */
+        box-sizing: border-box;
+        }
+
+        .services-flip-grid .flip-back p {
+        font-size: 0.78rem !important;     /* más pequeño que 0.9rem original */
+        line-height: 1.55 !important;      /* más separación entre líneas */
+        margin: 0 !important;
+        text-align: center !important;
+        color: #1c2e59 !important;
+        padding: 0 0.4rem !important;      /* evita que toque el borde del círculo */
+        hyphens: auto;
+        word-break: normal;
+        }
+                /* Ajuste extra en pantallas chicas */
+        @media (max-width: 560px){
+        .flip-back p{
+            font-size: 0.85rem;       /* un toque más pequeño en móvil */
+            line-height: 1.5;
+            padding: 0 0.4rem;        /* evita que toque el borde del círculo */
+        }
+        }
+
         /* ========== 1) VALUE: Odoo + IA ========== */
         .value-section{
         padding: 4rem 2rem;
-        background: linear-gradient(180deg,#f8fbff 0%, #ffffff 100%);
+        background:
+            linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
+            url('imagenes/odoo-ia-bg.jpeg'); /* cambia por tu imagen */
+        background-size: cover;
+        background-position: center;
         border-top: 1px solid rgba(0,0,0,.05);
         }
+
+
         .val-container{
         max-width: 1200px; margin: 0 auto;
         display: grid; gap: 2.5rem 3rem;
@@ -2180,7 +2259,6 @@
     </section>
 
 
-
     <!--seccion 4 Odoo mas IA  -->
     <section class="value-section" id="odoo-ia">
         <div class="val-container">
@@ -2300,70 +2378,95 @@
     <!-- 7. Ahorro de Tiempo -->
     <section class="time-savings-section">
         <div class="time-savings-container">
-            <h2 class="time-savings-title">Ahorro de Tiempo con Oohel</h2>
-            <p class="time-savings-subtitle">Nuestros clientes experimentan ahorros significativos de tiempo en sus operaciones</p>
+            <h2 class="time-savings-title">Ellos ya ahorran con Oohel… ¿y tú qué esperas?</h2>
+            <p class="time-savings-subtitle">
+            Nuestros clientes reducen drásticamente sus tiempos operativos gracias a la IA y la automatización.<br>
+            <strong>Mientras ellos ganan eficiencia, tú sigues perdiendo horas valiosas.</strong>
+            </p>
             
             <div class="chart-grid">
-                <div class="chart-item">
-                    <span class="chart-number" data-target="75">0</span>
-                    <div class="chart-label">% Reducción</div>
-                    <div class="chart-description">en tiempo de procesamiento de datos</div>
-                </div>
-                <div class="chart-item">
-                    <span class="chart-number" data-target="60">0</span>
-                    <div class="chart-label">% Menos Tiempo</div>
-                    <div class="chart-description">en tareas administrativas repetitivas</div>
-                </div>
-                <div class="chart-item">
-                    <span class="chart-number" data-target="85">0</span>
-                    <div class="chart-label">% Optimización</div>
-                    <div class="chart-description">en procesos de atención al cliente</div>
-                </div>
-                <div class="chart-item">
-                    <span class="chart-number" data-target="120">0</span>
-                    <div class="chart-label">Horas/Mes</div>
-                    <div class="chart-description">promedio ahorradas por empleado</div>
-                </div>
+            <div class="chart-item">
+                <span class="chart-number" data-target="45">0</span>
+                <div class="chart-label">% Reducción</div>
+                <div class="chart-description">en procesamiento de datos</div>
             </div>
+            <div class="chart-item">
+                <span class="chart-number" data-target="35">0</span>
+                <div class="chart-label">% Menos Tiempo</div>
+                <div class="chart-description">en tareas administrativas repetitivas</div>
+            </div>
+            <div class="chart-item">
+                <span class="chart-number" data-target="65">0</span>
+                <div class="chart-label">% Optimización</div>
+                <div class="chart-description">en procesos de atención al cliente</div>
+            </div>
+            <div class="chart-item">
+                <span class="chart-number" data-target="25">0</span>
+                <div class="chart-label">Horas/Mes</div>
+                <div class="chart-description">promedio ahorradas por empleado</div>
+            </div>
+            </div>
+
+            <p class="cta-text">
+            <strong> </strong> Únete a las empresas que ya lo hacen… No te quedes atrás.
+            </p>
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
+
+        <div class="footer-bottom">
+        </div>
+
+        <div class="footer-container">
             <div class="footer-column">
-                <h4>Servicios</h4>
-                <a href="inteligencia.html">Inteligencia Artificial</a>
-                <a href="educacion.html">Educación</a>
-                <a href="hosting.html">Hosting</a>
-                <a href="soporte.html">Soporte Técnico</a>
+            <h4>Servicios</h4>
+            <ul>
+                <li><a href="#">Inteligencia Artificial</a></li>
+                <li><a href="#">Educación</a></li>
+                <li><a href="#">Hosting</a></li>
+                <li><a href="#">Soporte Técnico</a></li>
+            </ul>
             </div>
+
             <div class="footer-column">
-                <h4>Empresa</h4>
-                <a href="#">Acerca de</a>
-                <a href="#">Blog</a>
-                <a href="#">Carreras</a>
-                <a href="contactanos.html">Contacto</a>
+            <h4>Empresa</h4>
+            <ul>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Carreras</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
             </div>
+
             <div class="footer-column">
-                <h4>Recursos</h4>
-                <a href="#">Documentación</a>
-                <a href="#">Centro de Ayuda</a>
-                <a href="#">Comunidad</a>
-                <a href="#">Plantillas</a>
+            <h4>Recursos</h4>
+            <ul>
+                <li><a href="#">Documentación</a></li>
+                <li><a href="#">Centro de Ayuda</a></li>
+                <li><a href="#">Comunidad</a></li>
+                <li><a href="#">Plantillas</a></li>
+            </ul>
             </div>
+
             <div class="footer-column">
-                <h4>Legal</h4>
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de Servicio</a>
-                <a href="#">Seguridad</a>
-                <a href="#">GDPR</a>
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#">Términos de Servicio</a></li>
+                <li><a href="#">Seguridad</a></li>
+                <li><a href="#">GDPR</a></li>
+            </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>© 2024 Oohel. Todos los derechos reservados.</p>
+            © 2024 Oohel. Todos los derechos reservados.
         </div>
     </footer>
+
 
     <script>
         // Testimonials navigation
