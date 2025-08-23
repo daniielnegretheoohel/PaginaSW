@@ -1178,6 +1178,183 @@
         text-align: center;
         }
 
+        /* ========== 1) VALUE: Odoo + IA ========== */
+        .value-section{
+        padding: 4rem 2rem;
+        background: linear-gradient(180deg,#f8fbff 0%, #ffffff 100%);
+        border-top: 1px solid rgba(0,0,0,.05);
+        }
+        .val-container{
+        max-width: 1200px; margin: 0 auto;
+        display: grid; gap: 2.5rem 3rem;
+        grid-template-columns: 1.1fr 0.9fr; align-items: center;
+        }
+        .val-eyebrow{
+        text-transform: uppercase; letter-spacing: .12em;
+        font-size: .78rem; color: #4a90e2; font-weight: 700; margin: 0 0 .4rem;
+        }
+        .val-title{ font-size: 2.2rem; line-height: 1.2; color: #1c2e59; margin: 0 0 .8rem; }
+        .val-title span{ color: #0066ff; }
+        .val-lead{ color: #3f4d6a; line-height: 1.65; font-size: 1.03rem; margin: 0 0 1rem; }
+        .val-benefits{ list-style: none; padding: 0; margin: 0 0 1.1rem; display: grid; gap: .45rem; color: #394660; }
+        .val-kpis{ display: grid; grid-template-columns: repeat(3,minmax(90px,1fr)); gap: 1rem; margin: .6rem 0 1.2rem; }
+        .kpi{ background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:.9rem .7rem; text-align:center; box-shadow:0 10px 20px rgba(0,0,0,.06); }
+        .kpi span{ display:block; font-size:1.6rem; font-weight:800; color:#1c2e59; }
+        .kpi small{ color:#647085; font-size:.85rem; }
+        .val-ctas{ display:flex; gap:.8rem; flex-wrap:wrap; }
+        .val-right{ margin:0; border-radius:16px; overflow:hidden; box-shadow:0 18px 45px rgba(0,0,0,.12); border:1px solid rgba(0,0,0,.06); }
+        .val-right img{ width:100%; height:100%; display:block; object-fit:cover; }
+
+        /* ========== 2) TRUST: Alianzas y Partners ========== */
+        .trust-section{
+        padding: 3.8rem 2rem;
+        background: #ffffff;
+        border-top: 1px solid rgba(0,0,0,.05);
+        }
+        .trust-container{ max-width: 1200px; margin: 0 auto; }
+        .trust-intro{ max-width: 820px; }
+        .trust-title{ font-size: 2rem; color:#1c2e59; margin: 0 0 .5rem; }
+        .trust-lead{ color:#465064; line-height:1.65; margin: 0 0 1.2rem; }
+
+        .trust-logos{
+        display:grid; grid-template-columns: repeat(4, minmax(110px, 1fr));
+        gap: 1.2rem; padding: 1rem; background:#f2f6ff;
+        border:1px solid rgba(0,0,0,.06); border-radius:14px;
+        }
+        .trust-logos img{
+        max-height: 40px; object-fit: contain; filter: grayscale(100%);
+        opacity:.85; transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+        }
+        .trust-logos img:hover{ filter: grayscale(0%); opacity:1; transform: translateY(-2px); }
+
+        .trust-chips{
+        display:flex; flex-wrap:wrap; gap:.5rem .6rem;
+        margin: 1rem 0 1.2rem; padding:0; list-style:none;
+        }
+        .trust-chips li{
+        padding:.45rem .75rem; border-radius:999px; background:#f6f9ff;
+        color:#1c2e59; font-size:.86rem; border:1px solid rgba(0,0,0,.06);
+        }
+
+        .trust-cards{
+        display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+        gap: 1rem; margin-top: .5rem;
+        }
+        .trust-card{
+        background:#fff; border:1px solid rgba(0,0,0,.06);
+        border-radius:14px; padding:1.1rem 1rem;
+        box-shadow:0 10px 24px rgba(0,0,0,.08);
+        transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .trust-card:hover{ transform: translateY(-3px); box-shadow: 0 16px 30px rgba(0,0,0,.12); }
+        .trust-card h3{ margin:.1rem 0 .4rem; color:#1c2e59; font-size:1.05rem; }
+        .trust-card p{ margin:0; color:#49566f; line-height:1.55; }
+
+        /* Responsive */
+        @media (max-width: 992px){
+        .val-container{ grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px){
+        .val-title{ font-size:1.8rem; }
+        .trust-logos{ grid-template-columns: repeat(2, 1fr); }
+        }
+
+
+        /* Contenedor sin fondo ni bordes, centrado */
+        .trust-logos.logos-single{
+        background: transparent;
+        border: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        }
+
+
+
+
+        /* Grid: imagen izquierda, contenido derecha */
+        .trust-container.trust-grid.left-photo{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr; /* más espacio para el contenido */
+        gap: 2.5rem 3rem;
+        align-items: center;               /* centra verticalmente ambas columnas */
+        }
+
+        /* Imagen izquierda con proporción estable */
+        .trust-photo{
+        margin: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,.06);
+        box-shadow: 0 18px 45px rgba(0,0,0,.12);
+        aspect-ratio: 4 / 3;               /* cambia a 16/9 si prefieres */
+        }
+        .trust-photo img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        }
+
+        /* Contenido centrado en su columna (pero texto a la izquierda) */
+        .trust-right{
+        display: grid;
+        place-items: center;               /* centra el bloque interior en el espacio */
+        }
+        .trust-right-inner{
+        width: 100%;
+        max-width: 720px;                  /* ancho cómodo del bloque de contenido */
+        text-align: left;                  /* el texto queda alineado a la izquierda */
+        }
+
+        /* Logos: centrados dentro del bloque */
+        .trust-logos.logos-single{
+        background: transparent;
+        border: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;           /* centrados */
+        align-items: center;
+        gap: 0;
+        margin: .5rem 0 1rem;
+        }
+        .trust-logos.logos-single .logos-strip{
+        display: block;
+        width: auto; height: auto;
+        max-height: 44px;                  /* ajusta tamaño */
+        max-width: 100%;
+        filter: none; opacity: 1;
+        }
+
+        /* Responsive: una columna en móvil (imagen arriba) */
+        @media (max-width: 992px){
+        .trust-container.trust-grid.left-photo{
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+        }
+        }
+        @media (max-width: 560px){
+        .trust-logos.logos-single .logos-strip{ max-height: 32px; }
+        }
+
+
+
+        /* La tira de logos: misma proporción, solo más chica */
+        .logos-strip{
+        display: block;
+        height: auto;         /* mantiene proporción */
+        max-height: 44px;     /* ⇦ AJUSTA aquí el tamaño (por ejemplo 28–60px) */
+        width: auto;
+        max-width: 100%;      /* que no se desborde en pantallas chicas */
+        }
+
+        /* Un poco más chica en móviles */
+        @media (max-width: 560px){
+        .logos-strip{ max-height: 32px; }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-container {
@@ -2004,77 +2181,95 @@
 
 
 
-    <!-- 4. Partners Estratégicos -->
-    <section class="partners-section">
-        <h2 class="section-title">Nuestros Partners Estratégicos</h2>
-        <div class="partners-grid">
-            <div class="partner-card">
-                <div class="partner-logo">O</div>
-                <h3>Partner Oficial Odoo</h3>
-                <p>Somos partner certificado de Odoo, líder mundial en software ERP de código abierto. Implementamos y personalizamos soluciones Odoo para optimizar los procesos empresariales de nuestros clientes con la máxima eficiencia.</p>
+    <!--seccion 4 Odoo mas IA  -->
+    <section class="value-section" id="odoo-ia">
+        <div class="val-container">
+            <div class="val-left">
+            <p class="val-eyebrow">Transformación con resultados</p>
+            <h2 class="val-title">Integramos <span>Odoo</span> + <span>IA</span> para acelerar tu operación</h2>
+            <p class="val-lead">
+                Digitalizamos procesos clave con Odoo y aplicamos IA para reducir tiempos, minimizar errores y dar visibilidad ejecutiva.
+            </p>
+
+            <ul class="val-benefits">
+                <li>Implementación guiada y go-live más rápido</li>
+                <li>Automatizaciones con IA integradas a tus flujos</li>
+                <li>Tableros y métricas para decisiones en tiempo real</li>
+            </ul>
+
+            <div class="val-kpis">
+                <div class="kpi"><span>15+</span><small>Años de experiencia</small></div>
+                <div class="kpi"><span>99.9%</span><small>Disponibilidad (SLA)</small></div>
+                <div class="kpi"><span>120+</span><small>Implementaciones</small></div>
             </div>
-            <div class="partner-card">
-                <div class="partner-logo">◗</div>
-                <h3>Partner Oficial Oracle</h3>
-                <p>Como partner autorizado de Oracle, ofrecemos implementación, soporte y consultoría especializada en bases de datos Oracle, sistemas empresariales y soluciones cloud de nivel enterprise para grandes corporaciones.</p>
+
+            <div class="val-ctas">
+                <a href="contactanos.html" class="btn btn-primary">Agenda una demo</a>
+                <a href="mision-vision.html" class="btn btn-outline">Conoce nuestra propuesta</a>
             </div>
+            </div>
+
+            <figure class="val-right">
+            <img src="imagenes/foto-odoo-ia.jpeg" alt="Odoo + IA en operación">
+            </figure>
         </div>
     </section>
 
-    <!-- 5. Alianzas Estratégicas -->
-    <section class="alliances-section">
-        <h2 class="section-title">Alianzas Estratégicas</h2>
-        <div class="alliances-grid">
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="handshake"></i></div>
-                <h3>Partners Tecnológicos</h3>
-                <p>Alianzas con líderes mundiales en tecnología</p>
-                <div class="alliance-details">
-                    <p>Trabajamos estrechamente con AWS, Microsoft Azure, Google Cloud, Oracle, y otras compañías tecnológicas líderes para ofrecer las mejores soluciones del mercado a nuestros clientes.</p>
+
+        <!--  5 Partners & Alianzas (UNIFICADO) -->
+    <section class="trust-section" id="partners">
+        <div class="trust-container trust-grid left-photo">
+            
+            <!-- IZQUIERDA: imagen del aliado -->
+            <aside class="trust-left">
+            <figure class="trust-photo">
+                <!-- ⇦ cambia por tu imagen real -->
+                <img src="imagenes/aliado-odoo.jpg" alt="Aliado / oficinas / equipo">
+            </figure>
+            </aside>
+
+            <!-- DERECHA: contenido CENTRADO en el espacio -->
+            <div class="trust-right">
+            <div class="trust-right-inner">
+                <div class="trust-intro">
+                <h2 class="trust-title">Alianzas y partners que inspiran confianza</h2>
+                <p class="trust-lead">
+                    Trabajamos con un ecosistema de tecnología y consultoría para entregar soluciones confiables y escalables.
+                </p>
+                </div>
+
+                <!-- Logos (una sola imagen) -->
+                <div class="trust-logos logos-single">
+                <img src="imagenes/logos/alianzas.png" alt="Odoo, Oracle, CIJA y DRASI" class="logos-strip">
+                </div>
+
+                <!-- Chips -->
+                <ul class="trust-chips">
+                <li>Partners Tecnológicos</li>
+                <li>Integradores</li>
+                <li>Consultoras</li>
+                <li>Instituciones Educativas</li>
+                <li>Proveedores de Hardware</li>
+                <li>Startups</li>
+                </ul>
+
+                <!-- Tarjetas -->
+                <div class="trust-cards">
+                <article class="trust-card">
+                    <h3>Partner Oficial Odoo</h3>
+                    <p>Implementación y personalización de módulos ERP para optimizar procesos end-to-end.</p>
+                </article>
+                <article class="trust-card">
+                    <h3>Oracle Technology Partner</h3>
+                    <p>Consultoría e integración de bases de datos, middleware y soluciones cloud enterprise.</p>
+                </article>
                 </div>
             </div>
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="graduation-cap"></i></div>
-                <h3>Instituciones Educativas</h3>
-                <p>Programas académicos y certificaciones</p>
-                <div class="alliance-details">
-                    <p>Colaboramos con universidades y centros de educación superior para desarrollar programas de capacitación actualizados y ofrecer certificaciones reconocidas internacionalmente.</p>
-                </div>
             </div>
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="building-2"></i></div>
-                <h3>Integradores de Sistemas</h3>
-                <p>Red de socios implementadores</p>
-                <div class="alliance-details">
-                    <p>Contamos con una red sólida de integradores certificados que nos ayudan a implementar nuestras soluciones en diferentes regiones y sectores industriales.</p>
-                </div>
-            </div>
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="globe"></i></div>
-                <h3>Consultoras Especializadas</h3>
-                <p>Expertise en transformación digital</p>
-                <div class="alliance-details">
-                    <p>Alianzas estratégicas con consultoras especializadas en diferentes industrias que nos permiten ofrecer soluciones personalizadas y adaptadas a las necesidades específicas de cada sector.</p>
-                </div>
-            </div>
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="cpu"></i></div>
-                <h3>Proveedores de Hardware</h3>
-                <p>Equipamiento de vanguardia</p>
-                <div class="alliance-details">
-                    <p>Partnerships con fabricantes líderes de hardware que nos permiten ofrecer infraestructura de última generación y soluciones completas de TI para nuestros clientes empresariales.</p>
-                </div>
-            </div>
-            <div class="alliance-card">
-                <div class="alliance-icon"><i data-lucide="zap"></i></div>
-                <h3>Startups Innovadoras</h3>
-                <p>Tecnologías emergentes</p>
-                <div class="alliance-details">
-                    <p>Colaboramos con startups innovadoras para mantenernos a la vanguardia de las tecnologías emergentes y ofrecer soluciones disruptivas que generen ventajas competitivas.</p>
-                </div>
-            </div>
+
         </div>
     </section>
+
 
     <!-- 6. Testimonios/Referencias -->
     <section class="testimonials-section">
