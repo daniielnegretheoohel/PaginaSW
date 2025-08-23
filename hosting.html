@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosting - Planes y Precios - Oohel Technologies</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Botpress Chat -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2025/04/24/15/20250424155314-43ZK3MMR.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: rgb(28, 46, 89);
+            font-weight: 400;
+            font-size: 14px;
+            overflow-x: hidden;
+            line-height: 1.5;
+            background: #ffffff;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" fill="%234a90e2" opacity="0.8"/><circle cx="12" cy="12" r="4" fill="%230066ff"/><circle cx="12" cy="12" r="1" fill="white"/></svg>') 12 12, auto;
+        }
+
+        /* Cursor personalizado para enlaces y botones */
+        a, button, .btn, .dropdown-item, .accordion-header, .side-menu-link {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="%234a90e2" opacity="0.9"/><circle cx="12" cy="12" r="6" fill="%230066ff"/><circle cx="12" cy="12" r="2" fill="white"/></svg>') 12 12, pointer;
+        }
+
+        /* Efecto de trail del cursor */
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #4a90e2;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Header Transparente como en index.html */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: #1c2e59;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-item > a:hover {
+            color: #4a90e2;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .btn-text {
+            color: #1c2e59;
+            background: transparent;
+        }
+
+        .btn-primary {
+            background: #0066ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0052cc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(28, 46, 89, 0.6), rgba(74, 144, 226, 0.4)),
+                url('https://www.ionos.com/es-us/digitalguide/fileadmin/DigitalGuide/Teaser/servervirtualisierung-t.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 5.5rem 2rem 3rem;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            color: #1c2e59;
+            background: rgba(255,255,255,0.9);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .billing-toggle span {
+            color: #1c2e59;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4a90e2;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        /* Oohel Cloud Section */
+        .oohel-cloud-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .oohel-cloud-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .oohel-cloud-content h2 {
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .oohel-cloud-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .oohel-cloud-image {
+            background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .oohel-cloud-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .pricing-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #4a90e2 0%, #2563eb 100%);
+            color: white;
+            border-color: #4a90e2;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1c2e59;
+        }
+
+        .pricing-card.featured .plan-name {
+            color: white;
+        }
+
+        .plan-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.featured .plan-description {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1c2e59;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card.featured .plan-price {
+            color: white;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .pricing-card.featured .price-period {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: #666;
+        }
+
+        .pricing-card.featured .plan-features li {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            color: #22c55e;
+            flex-shrink: 0;
+        }
+
+        .pricing-card.featured .feature-icon {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .btn-outline {
+            border: 2px solid #4a90e2;
+            color: #4a90e2;
+            background: white;
+        }
+
+        .btn-outline:hover {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .btn-white {
+            background: white;
+            color: #4a90e2;
+            border: 2px solid white;
+        }
+
+        .btn-white:hover {
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* What We Offer Section */
+        .what-we-offer-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(224,242,255,0.3) 0%, rgba(240,230,255,0.3) 100%);
+        }
+
+        .what-we-offer-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4a90e2 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-item-icon i {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .feature-item-content h3 {
+            font-size: 1.25rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-item-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .compare-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(224,242,255,0.3) 0%, rgba(240,230,255,0.3) 100%);
+        }
+
+        .compare-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .compare-plans-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .compare-plan-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .compare-plan-card.featured {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .compare-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .table-section {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            background: #f8fafc;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            color: #1c2e59;
+            font-size: 1.1rem;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .feature-row:last-child {
+            border-bottom: none;
+        }
+
+        .feature-name {
+            font-weight: 500;
+            color: #1c2e59;
+        }
+
+        .feature-value {
+            text-align: center;
+            color: #666;
+        }
+
+        .check-icon {
+            color: #22c55e;
+            width: 20px;
+            height: 20px;
+        }
+
+        .x-icon {
+            color: #ef4444;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #4a90e2;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            color: #666;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(224,242,255,0.3) 0%, rgba(240,230,255,0.3) 100%);
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: #1c2e59;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-icon {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+            color: #4a90e2;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Clients Section */
+        .clients-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .clients-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1c2e59;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .clients-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .client-logo {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .client-logo:hover {
+            border-color: #4a90e2;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .client-logo h4 {
+            color: #1c2e59;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .footer {
+            background: #1c2e59;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #4a90e2;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .compare-plans-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://lh4.googleusercontent.com/proxy/9mIXJpylWj80P77Xbim2sOyD7k3Z-ZCR8ipj1tjR1JUADemZqJT_EsOGu9EO-V4QNBYpRlnGdCXcERhIpdnIerlZzHrlfvxgEpONujxlbSknauw" alt="Oohel Logo">
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="index.html">Oohel</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#inteligencia-artificial">Inteligencia Artificial</a>
+                </div>
+                <div class="nav-item">
+                    <a href="educacion.html">Educación</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#soporte-tecnico">Soporte Técnico</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#hosting">Hosting</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#soluciones-empresariales">Soluciones Empresariales</a>
+                </div>
+            </nav>
+            <div class="nav-buttons">
+                <a href="#" class="btn btn-text">Iniciar sesión</a>
+                <a href="#" class="btn btn-primary">Contáctanos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Oohel Cloud - Hosting Administrado para Tu Sistema</h1>
+                <p>Potencia tu sistema con infraestructura dedicada y acompañamiento experto. Nos encargamos del mantenimiento, tú te concentras en tu operación.</p>
+            </div>
+        </section>
+
+        <!-- ¿Qué es Oohel Cloud? Section -->
+        <section class="oohel-cloud-section">
+            <div class="oohel-cloud-container">
+                <div class="oohel-cloud-content">
+                    <h2>¿Qué es Oohel Cloud?</h2>
+                    <p>Oohel Cloud es nuestra plataforma de hosting administrado para tu sistema.</p>
+                    <p>Nuestra infraestructura está diseñada para cubrir las necesidades técnicas reales de tu organización, garantizando alto desempeño y continuidad operativa.</p>
+                    <p>No importa qué sistema tengas. Nosotros lo alojamos, lo protegemos y lo mantenemos disponible.</p>
+                </div>
+                <div class="oohel-cloud-image">
+                    <div style="text-align: center; color: #4a90e2;">
+                        <i data-lucide="server" style="width: 120px; height: 120px; margin-bottom: 1rem;"></i>
+                        <h3 style="color: #1c2e59; margin: 0;">Infraestructura Administrada</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <div class="billing-toggle">
+                <span>Mensual</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Anual <span style="color: #22c55e; font-weight: 600;">(-20%)</span></span>
+            </div>
+            <div class="pricing-grid">
+                <!-- Plan Básico -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Hosting Básico</h3>
+                        <p class="plan-description">Perfecto para sitios web personales y pequeños proyectos</p>
+                        <div class="plan-price">$1,200<span class="price-period">/mes</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check" class="feature-icon"></i>Recursos compartidos optimizados</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>1 dominio incluido</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>SSL/TLS gratuito</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Backup diario</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Soporte por email</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>99.9% uptime garantizado</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Panel de control cPanel</li>
+                    </ul>
+                    <a href="#" class="plan-button btn-outline">Comenzar ahora</a>
+                </div>
+
+                <!-- Plan Oohel Cloud (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Oohel Cloud</h3>
+                        <p class="plan-description">Hosting administrado con infraestructura dedicada</p>
+                        <div class="plan-price">$3,500<span class="price-period">/mes</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check" class="feature-icon"></i>Infraestructura dedicada</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Respaldos diarios rotativos (7 días)</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Respaldo externo mensual</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Soporte técnico especializado</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Instancia de pruebas incluida</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Administración completa por Oohel</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Monitoreo activo 24/7</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Compatibilidad flexible</li>
+                    </ul>
+                    <a href="#" class="plan-button btn-white">Cotizar ahora</a>
+                </div>
+
+                <!-- Plan Enterprise -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <p class="plan-description">Soluciones personalizadas para grandes empresas</p>
+                        <div class="plan-price">Cotización<span class="price-period"> personalizada</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check" class="feature-icon"></i>Infraestructura completamente dedicada</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Múltiples instancias de prueba</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Recuperación ante desastres</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>SLA personalizado</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Gerente de cuenta dedicado</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Hosting verde (energía renovable)</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Integración con servicios Odoo</li>
+                        <li><i data-lucide="check" class="feature-icon"></i>Desarrollo personalizado disponible</li>
+                    </ul>
+                    <a href="#" class="plan-button btn-outline">Contactar ventas</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿Qué ofrecemos? Section -->
+        <section class="what-we-offer-section">
+            <h2 class="what-we-offer-title">¿Qué ofrecemos?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="server"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Infraestructura Dedicada</h3>
+                        <p>Recursos exclusivos para tu instancia, sin compartir servidor. Mayor rendimiento y seguridad garantizados.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Certificado SSL/TLS</h3>
+                        <p>Comunicación cifrada y segura, con protocolos actualizados para proteger la información de tus usuarios.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Compatibilidad Flexible</h3>
+                        <p>Nos adaptamos a los requerimientos de tu sistema, sin importar la tecnología que utilices.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Recuperación ante Desastres</h3>
+                        <p>Procedimientos definidos para restaurar tu sistema en caso de incidente, minimizando el tiempo de inactividad.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="flask"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Instancia de Pruebas</h3>
+                        <p>Entorno separado para validar cambios y desarrollos sin afectar producción. Prueba con confianza.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Soporte Técnico Especializado</h3>
+                        <p>Atención directa por personal con experiencia en Odoo y servidores. Sin tickets eternos.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="cog"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Administración por Oohel</h3>
+                        <p>Nosotros nos encargamos del mantenimiento, configuración y seguridad. Tú te concentras en tu operación.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="cloud"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Respaldos Diarios Rotativos</h3>
+                        <p>Copias automáticas conservadas durante 7 días consecutivos, más respaldo externo mensual para mayor seguridad.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-item-icon">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <div class="feature-item-content">
+                        <h3>Monitoreo Activo</h3>
+                        <p>Supervisión constante de recursos, accesos y rendimiento. Detectamos problemas antes de que te afecten.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compare Plans Section -->
+        <section class="compare-section">
+            <h2 class="compare-title">Compara todos los planes</h2>
+            
+            <div class="compare-plans-grid">
+                <div class="compare-plan-card">
+                    <h4>Hosting Básico</h4>
+                    <p>$1,200/mes</p>
+                </div>
+                <div class="compare-plan-card featured">
+                    <h4>Oohel Cloud</h4>
+                    <p>$3,500/mes</p>
+                </div>
+                <div class="compare-plan-card">
+                    <h4>Enterprise</h4>
+                    <p>Cotización</p>
+                </div>
+                <div class="compare-plan-card">
+                    <h4>Personalizado</h4>
+                    <p>Contactar</p>
+                </div>
+            </div>
+
+            <div class="compare-table">
+                <div class="table-section">
+                    <div class="section-header">Infraestructura</div>
+                    <div class="feature-row">
+                        <div class="feature-name">Tipo de recursos</div>
+                        <div class="feature-value">Compartidos</div>
+                        <div class="feature-value">Dedicados</div>
+                        <div class="feature-value">Dedicados</div>
+                        <div class="feature-value">Personalizado</div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Instancia de pruebas</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Administración del servidor</div>
+                        <div class="feature-value">Cliente</div>
+                        <div class="feature-value">Oohel</div>
+                        <div class="feature-value">Oohel</div>
+                        <div class="feature-value">Oohel</div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Monitoreo 24/7</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="section-header">Respaldos y Seguridad</div>
+                    <div class="feature-row">
+                        <div class="feature-name">Respaldos diarios</div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value">7 días rotativos</div>
+                        <div class="feature-value">7 días rotativos</div>
+                        <div class="feature-value">Personalizado</div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Respaldo externo mensual</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">SSL/TLS gratuito</div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Recuperación ante desastres</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <div class="section-header">Soporte</div>
+                    <div class="feature-row">
+                        <div class="feature-name">Soporte por email</div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Soporte especializado en Odoo</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Tiempo de respuesta crítico</div>
+                        <div class="feature-value">24 horas</div>
+                        <div class="feature-value">1-5 minutos</div>
+                        <div class="feature-value">1-5 minutos</div>
+                        <div class="feature-value">1-5 minutos</div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-name">Gerente de cuenta dedicado</div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="x" class="x-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                        <div class="feature-value"><i data-lucide="check" class="check-icon"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <h2 class="testimonials-title">Por Qué las Empresas Eligen Oohel Cloud</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: #4a90e2;">UTP</div>
+                        <div class="testimonial-info">
+                            <h4>Universidad Politécnica</h4>
+                            <p>Director de TI</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Oohel Cloud nos ha permitido mantener nuestros sistemas Odoo funcionando sin interrupciones. Su soporte especializado en Odoo es invaluable, y la infraestructura dedicada garantiza el rendimiento que necesitamos para nuestros procesos académicos."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: #22c55e;">DEN</div>
+                        <div class="testimonial-info">
+                            <h4>Dentalia</h4>
+                            <p>Gerente de Operaciones</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"La instancia de pruebas nos permite validar cambios sin afectar la producción. El equipo de Oohel se encarga de todo el mantenimiento y nosotros nos concentramos en atender a nuestros pacientes. Es exactamente lo que necesitábamos."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: #f59e0b;">REF</div>
+                        <div class="testimonial-info">
+                            <h4>Refimesa</h4>
+                            <p>CTO</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Los respaldos automáticos y el respaldo externo mensual nos dan total tranquilidad. Además, el tiempo de respuesta de 1-5 minutos para incidentes críticos es realmente impresionante. Nunca habíamos tenido un servicio tan confiable."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: #a855f7;">APAC</div>
+                        <div class="testimonial-info">
+                            <h4>APAC</h4>
+                            <p>Administrador de Sistemas</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"La compatibilidad flexible de Oohel nos permitió migrar nuestro sistema sin problemas. Su equipo entendió perfectamente nuestros requerimientos técnicos y adaptó la infraestructura exactamente a lo que necesitábamos."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section class="clients-section">
+            <h2 class="clients-title">Nuestros Clientes Confían en Oohel Cloud</h2>
+            <div class="clients-grid">
+                <div class="client-logo">
+                    <h4>Dentalia</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>APAC</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Quickshine</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Refimesa</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Ozono Polaris</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>UPONN</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Instituto Tecnológico de Linares</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Universidad Tecnológica Fidel Velázquez</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Anglo Español Durango</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>GQAM</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>TEC Moroleón</h4>
+                </div>
+                <div class="client-logo">
+                    <h4>Instituto Universitario AAANL</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="faq-title">Preguntas Frecuentes sobre Oohel Cloud</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Qué incluye el SLA de Oohel Cloud?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Nuestro SLA garantiza respuesta de 1-5 minutos para incidentes críticos, hasta 45 minutos para prioridad alta, hasta 2 horas para prioridad media, y hasta 24 horas para consultas de baja prioridad. Incluye atención continua hasta resolver incidentes críticos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Qué diferencia a Oohel Cloud del hosting tradicional?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Oohel Cloud ofrece infraestructura dedicada (no compartida), administración completa por nuestro equipo, soporte especializado en Odoo, instancia de pruebas incluida, y monitoreo activo 24/7. Nosotros nos encargamos de todo el mantenimiento técnico.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cómo funcionan los respaldos en Oohel Cloud?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Realizamos respaldos diarios rotativos conservados durante 7 días consecutivos, más un respaldo externo mensual para mayor seguridad. Los respaldos son automáticos y pueden restaurarse rápidamente en caso de necesidad.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Puedo migrar mi sistema actual a Oohel Cloud?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sí, ofrecemos compatibilidad flexible para adaptarnos a los requerimientos de tu sistema actual. Nuestro proceso incluye análisis de despliegue, propuesta personalizada, entorno de pruebas y migración sin downtime.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Qué incluye la administración por parte de Oohel?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Nos encargamos del mantenimiento del servidor, configuración del sistema, aplicación de actualizaciones de seguridad, monitoreo de rendimiento, gestión de respaldos y resolución de incidencias técnicas. Tú te concentras en tu operación.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Ofrecen servicios adicionales además del hosting?
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sí, ofrecemos soluciones Odoo (implementación, capacitaciones, soporte), soluciones de IA (asistentes inteligentes, análisis de datos), módulos propios y desarrollo personalizado. Somos un partner oficial de Odoo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="inteligencia.html">Inteligencia Artificial</a></li>
+                    <li><a href="educacion.html">Educación</a></li>
+                    <li><a href="hosting.html">Oohel Cloud</a></li>
+                    <li><a href="soporte.html">Soporte Técnico</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Hosting</h3>
+                <ul>
+                    <li><a href="#pricing">Planes y Precios</a></li>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="mailto:ventas@oohel.net">Cotizar Proyecto</a></li>
+                    <li><a href="tel:2229668337">222 966 8337</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul>
+                    <li><a href="https://oohel.net/hosting">Más Información</a></li>
+                    <li><a href="#">Centro de Ayuda</a></li>
+                    <li><a href="#">Estado del Servicio</a></li>
+                    <li><a href="#">Migración Gratuita</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Empresa</h3>
+                <ul>
+                    <li><a href="index.html#about">Acerca de Oohel</a></li>
+                    <li><a href="index.html#contact">Contacto</a></li>
+                    <li><a href="#">Partner Oficial Odoo</a></li>
+                    <li><a href="#">Partner Oficial Oracle</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Oohel Technologies SA de CV. Todos los derechos reservados. | Liderazgo por Talento y Tecnología</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.7)';
+                    header.style.backdropFilter = 'blur(3px)';
+                    header.style.webkitBackdropFilter = 'blur(3px)';
+                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.6)';
+                    header.style.backdropFilter = 'blur(10px)';
+                    header.style.webkitBackdropFilter = 'blur(10px)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Billing toggle functionality
+            const billingToggle = document.getElementById('billingToggle');
+            const prices = document.querySelectorAll('.plan-price');
+            const monthlyPrices = ['$1,200', '$3,500', 'Cotización'];
+            const annualPrices = ['$960', '$2,800', 'Cotización'];
+
+            billingToggle.addEventListener('change', function() {
+                prices.forEach((price, index) => {
+                    if (index < 3) { // Only update the first 3 price elements
+                        if (this.checked) {
+                            if (index === 2) {
+                                price.innerHTML = annualPrices[index] + '<span class="price-period"> personalizada</span>';
+                            } else {
+                                price.innerHTML = annualPrices[index] + '<span class="price-period">/mes</span>';
+                            }
+                        } else {
+                            if (index === 2) {
+                                price.innerHTML = monthlyPrices[index] + '<span class="price-period"> personalizada</span>';
+                            } else {
+                                price.innerHTML = monthlyPrices[index] + '<span class="price-period">/mes</span>';
+                            }
+                        }
+                    }
+                });
+            });
+
+            // FAQ functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.closest('.faq-item');
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Cursor Trail Effect
+            const cursorTrail = [];
+            const trailLength = 8;
+
+            // Create trail elements
+            for (let i = 0; i < trailLength; i++) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = '-100px';
+                trail.style.top = '-100px';
+                document.body.appendChild(trail);
+                cursorTrail.push(trail);
+            }
+
+            let mouseX = 0;
+            let mouseY = 0;
+            let currentTrail = 0;
+
+            // Update mouse position
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Animate trail
+            function animateTrail() {
+                const trail = cursorTrail[currentTrail];
+                trail.style.left = mouseX - 4 + 'px';
+                trail.style.top = mouseY - 4 + 'px';
+                trail.style.opacity = '0.8';
+                
+                // Fade out effect
+                setTimeout(() => {
+                    trail.style.opacity = '0';
+                }, 50);
+
+                currentTrail = (currentTrail + 1) % trailLength;
+            }
+
+            // Run trail animation
+            setInterval(animateTrail, 30);
+
+            // Hide trail when mouse leaves window
+            document.addEventListener('mouseleave', () => {
+                cursorTrail.forEach(trail => {
+                    trail.style.opacity = '0';
+                });
+            });
+
+            // Show trail when mouse enters window
+            document.addEventListener('mouseenter', () => {
+                cursorTrail.forEach(trail => {
+                    trail.style.opacity = '0.6';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
