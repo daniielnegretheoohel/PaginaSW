@@ -1,1510 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oohel - Nuestra Misión y Visión</title>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Botpress Chat -->
-    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
-    <script src="https://files.bpcontent.cloud/2025/04/24/15/20250424155314-43ZK3MMR.js" defer></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            color: rgb(28, 46, 89);
-            font-weight: 400;
-            font-size: 14px;
-            overflow-x: hidden;
-            line-height: 1.5;
-            background: #ffffff;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" fill="%234a90e2" opacity="0.8"/><circle cx="12" cy="12" r="4" fill="%230066ff"/><circle cx="12" cy="12" r="1" fill="white"/></svg>') 12 12, auto;
-        }
-
-        /* Cursor personalizado para enlaces y botones */
-        a, button, .btn, .dropdown-item, .accordion-header, .side-menu-link {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="%234a90e2" opacity="0.9"/><circle cx="12" cy="12" r="6" fill="%230066ff"/><circle cx="12" cy="12" r="2" fill="white"/></svg>') 12 12, pointer;
-        }
-
-        /* Efecto de trail del cursor */
-        .cursor-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: #4a90e2;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Cursor para inputs */
-        input, textarea {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="11" y="4" width="2" height="16" fill="%234a90e2"/><rect x="8" y="4" width="8" height="2" fill="%234a90e2"/><rect x="8" y="18" width="8" height="2" fill="%234a90e2"/></svg>') 12 12, text;
-        }
-
-        /* Header Semitransparente Original */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.6);
-            z-index: 1000;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            position: relative;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-item > a {
-            text-decoration: none;
-            color: #1c2e59;
-            font-size: 0.9rem;
-            padding: 0.5rem 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-item > a:hover {
-            color: #4a90e2;
-        }
-
-        .nav-item.has-dropdown > a::after {
-            content: '▾';
-            font-size: 0.7rem;
-            opacity: 0.6;
-            transition: transform 0.3s;
-        }
-
-        .nav-item:hover > a::after {
-            transform: rotate(180deg);
-        }
-
-        /* Dropdown mejorado */
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 280px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            padding: 1rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-container {
-            padding: 0 1rem;
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .dropdown-section {
-            position: relative;
-        }
-
-        .dropdown-section h4 {
-            font-size: 0.8rem;
-            color: #374151;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .dropdown-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.6rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #1c2e59;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .dropdown-item:hover {
-            background: #f8fafb;
-            border-color: #e1e8ed;
-        }
-
-        .dropdown-icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-            color: #6b7280;
-        }
-
-        .dropdown-icon i {
-            width: 16px;
-            height: 16px;
-            color: #6b7280;
-        }
-
-        .dropdown-text h5 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-            color: #1c2e59;
-        }
-
-        .dropdown-text p {
-            font-size: 0.65rem;
-            color: #6b7280;
-            line-height: 1.3;
-        }
-
-        /* Accordion Styles - Ahora con hover */
-        .accordion-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            position: relative;
-        }
-
-        .accordion-item {
-            position: static;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            overflow: visible;
-        }
-
-        .accordion-header {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.7rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: white;
-            border-radius: 6px;
-            min-height: 50px;
-        }
-
-        .accordion-header:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .accordion-header .dropdown-text h5 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.15rem;
-            color: #1c2e59;
-            line-height: 1.2;
-        }
-
-        .accordion-header .dropdown-text p {
-            font-size: 0.65rem;
-            color: #6b7280;
-            line-height: 1.3;
-            margin: 0;
-        }
-
-        .accordion-arrow {
-            width: 16px;
-            height: 16px;
-            margin-left: auto;
-            transition: all 0.3s ease;
-            opacity: 0.7;
-            color: #6b7280;
-        }
-
-        /* Hover para activar accordion */
-        .accordion-item:hover .accordion-arrow {
-            transform: rotate(90deg);
-            color: #4a90e2;
-        }
-
-        .accordion-item:hover .accordion-header {
-            background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%);
-            border-color: #d1e7ff;
-            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
-        }
-
-        /* Side Menu - Ahora se activa con hover */
-        .side-menu {
-            position: absolute;
-            left: 100%;
-            top: 0;
-            min-width: 200px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-            border-radius: 8px;
-            border: 1px solid rgba(0,0,0,0.06);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-            z-index: 1002;
-            margin-left: 0.5rem;
-            padding: 0.5rem 0;
-        }
-
-        .accordion-item:hover .side-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        .side-menu-link {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.6rem 0.8rem;
-            color: #374151;
-            text-decoration: none;
-            font-size: 0.7rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            min-height: 32px;
-        }
-
-        .side-menu-link:last-child {
-            border-bottom: none;
-        }
-
-        .side-menu-link:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #1c2e59;
-            transform: translateX(2px);
-        }
-
-        .side-menu-link i {
-            width: 14px;
-            height: 14px;
-            color: #6b7280;
-            flex-shrink: 0;
-        }
-
-        .side-menu-link:hover i {
-            color: #4a90e2;
-        }
-
-        .side-menu-link span {
-            white-space: nowrap;
-            font-weight: 500;
-            line-height: 1.3;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 0.5rem 1.25rem;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: inline-block;
-        }
-
-        .btn-text {
-            color: #1c2e59;
-            background: transparent;
-        }
-
-        .btn-primary {
-            background: #0066ff;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #0052cc;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
-        }
-
-        .btn-outline {
-            border: 1.5px solid #ddd;
-            color: #1c2e59;
-            background: white;
-        }
-
-        .btn-outline:hover {
-            border-color: #4a90e2;
-            color: #4a90e2;
-        }
-
-        /* Botpress Chat - Miniatura */
-        #bp-web-widget {
-            transform: scale(0.6) !important;
-            transform-origin: bottom right !important;
-        }
-        
-        .bp-widget-btn {
-            width: 40px !important;
-            height: 40px !important;
-        }
-        
-        .bp-widget-container {
-            width: 250px !important;
-            height: 300px !important;
-            transform: scale(0.8) !important;
-        }
-        
-        .bp-chat-bubble {
-            transform: scale(0.7) !important;
-        }
-        
-        /* Asegurar que el widget esté en la esquina */
-        div[id*="bp-widget"] {
-            position: fixed !important;
-            bottom: 15px !important;
-            right: 15px !important;
-            z-index: 9999 !important;
-        }
-
-        /* Hero Section Específico para Misión y Visión */
-        .hero-mission {
-            margin-top: 80px;
-            padding: 4rem 2rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-mission::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .hero-mission-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-mission h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-mission p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Misión, Visión y Valores Section Mejorada */
-        .mission-vision-section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.25rem;
-            color: #1c2e59;
-            margin-bottom: 2.5rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .mission-vision-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .mission-vision-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .mission-vision-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        .mission-vision-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            transition: opacity 0.3s;
-        }
-
-        .mission-vision-card.vision::before {
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            opacity: 1;
-        }
-
-        .mission-vision-card.mission::before {
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
-            opacity: 1;
-        }
-
-        .mission-vision-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #1c2e59;
-        }
-
-        .mission-vision-card h3 i {
-            width: 32px;
-            height: 32px;
-            color: #4a90e2;
-        }
-
-        .mission-vision-card p {
-            font-size: 1.1rem;
-            position: relative;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        .values-transformation-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .values-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease;
-        }
-
-        .values-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .values-card h3 {
-            font-size: 1.5rem;
-            color: #1c2e59;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .values-card h3 i {
-            width: 28px;
-            height: 28px;
-            color: #4a90e2;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .value-item {
-            background: linear-gradient(135deg, #f8faff 0%, #f0f7ff 100%);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid #e3f2fd;
-            transition: all 0.3s ease;
-        }
-
-        .value-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);
-        }
-
-        .value-item h4 {
-            color: #1c2e59;
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .value-item h4 i {
-            width: 20px;
-            height: 20px;
-            color: #4a90e2;
-        }
-
-        .value-item p {
-            color: #666;
-            line-height: 1.5;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 2.5rem 2rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            margin-top: 3rem;
-            background: linear-gradient(180deg, rgba(250,250,250,0.5) 0%, rgba(255,255,255,0.8) 100%);
-        }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-column h4 {
-            color: #1c2e59;
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .footer-column a {
-            display: block;
-            color: #666;
-            text-decoration: none;
-            margin: 0.4rem 0;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-        }
-
-        .footer-column a:hover {
-            color: #4a90e2;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e0e0e0;
-            color: #999;
-            font-size: 0.8rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-mission h1 {
-                font-size: 2rem;
-            }
-
-            .mission-vision-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dropdown {
-                position: fixed;
-                top: 60px;
-                left: 5%;
-                right: 5%;
-                min-width: auto;
-                width: 90%;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oohel — Misión, Visión y Valores</title>
+  <meta name="description" content="Conoce la misión, visión y valores de Oohel. Diseño limpio con hero delgado y barra de menú transparente sobre la imagen, más nuestro compromiso social (500 kg de arroz y becas)." />
+
+  <!-- Iconos -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <style>
+    /* ====== Base / Tipografía / Colores ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1c2e59; background:#fff; line-height:1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ====== Header fijo, traslúcido, sobre la imagen ====== */
+    .header { position: fixed; inset: 0 0 auto 0; z-index: 1000; padding: .5rem 0; background: rgba(255,255,255,.12); border-bottom: 1px solid rgba(0,0,0,.03); transition: background .25s, box-shadow .25s, backdrop-filter .25s; }
+    .header.scrolled { background: rgba(255,255,255,.55); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; display:flex; align-items:center; justify-content:space-between; gap: 1rem; }
+    .logo { display:flex; align-items:center; gap:.6rem; }
+    .logo img { height: 44px; width:auto; }
+
+    .nav-menu { display:flex; align-items:center; gap:.5rem; position:relative; }
+    .nav-item { position:relative; }
+    .nav-item > a { font-size:.95rem; padding:.5rem .45rem; border-radius:8px; font-weight:600; display:flex; align-items:center; gap:.35rem; }
+    .nav-item > a:hover { color:#4a90e2; background: rgba(74,144,226,.08); }
+
+    .nav-item.has-dropdown > a::after { content:'▾'; font-size:.75rem; opacity:.65; }
+    .dropdown { position:absolute; top:100%; left:0; min-width:280px; background: rgba(255,255,255,.98); border:1px solid rgba(0,0,0,.06); box-shadow:0 14px 40px rgba(0,0,0,.10); border-radius:12px; padding:.75rem 0; opacity:0; visibility:hidden; transform: translateY(-8px); transition:.2s; z-index:1001; }
+    .nav-item:hover .dropdown { opacity:1; visibility:visible; transform: translateY(0); }
+    .dropdown-content { display:grid; gap:.5rem; padding:0 .75rem; }
+    .dropdown-item { display:flex; gap:.7rem; align-items:flex-start; padding:.6rem .55rem; border-radius:10px; border:1px solid transparent; }
+    .dropdown-item:hover { background:#f8fafb; border-color:#e6eef6; }
+    .dropdown-icon i { width:18px; height:18px; color:#6b7280; }
+    .dropdown-text h5 { margin:.05rem 0; font-size:.82rem; font-weight:700; }
+    .dropdown-text p { margin:0; font-size:.7rem; color:#6b7280; }
+
+    .nav-buttons { display:flex; gap:.6rem; align-items:center; }
+    .btn { display:inline-block; padding:.5rem 1.1rem; border-radius:999px; font-weight:700; font-size:.9rem; border:none; cursor:pointer; }
+    .btn-text { background:transparent; color:#1c2e59; }
+    .btn-primary { background:#0066ff; color:#fff; }
+    .btn-primary:hover { box-shadow:0 8px 18px rgba(0,102,255,.25); background:#0052cc; }
+
+    /* ====== Hero delgado con imagen de fondo ====== */
+    .hero { position:relative; margin-top:0; min-height: 360px; display:grid; place-items:center; padding: 112px 16px 48px; color:#fff; text-align:center; overflow:hidden; }
+    .hero::before { content:""; position:absolute; inset:0; background-image:url('https://www.equipamientointegraldeoficinas.com/wp-content/uploads/Solida_Post-1_-3-Oficina-moderna-con-luz-natural.jpg'); background-size:cover; background-position:center; filter:brightness(.55) saturate(1.05); }
+    .hero::after { content:""; position:absolute; inset:0; background: linear-gradient(135deg, rgba(102,126,234,.45), rgba(118,75,162,.45)); }
+    .hero-inner { position:relative; z-index:1; max-width: 1000px; }
+    .hero h1 { margin:0 0 .35rem; font-weight:900; font-size: clamp(1.9rem, 3.6vw, 3rem); letter-spacing:-.01em; }
+    .hero p { margin:.25rem auto 0; max-width: 820px; font-size: clamp(1rem, 2.1vw, 1.12rem); opacity:.95; }
+
+    /* ====== Cuerpo ====== */
+    .section { max-width: 1200px; margin: 0 auto; padding: 56px 16px; }
+    .mv-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .mv-card { background:#fff; border:1px solid rgba(0,0,0,.05); border-radius: 18px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .mv-card h2 { margin:.1rem 0 .6rem; font-size: 1.35rem; font-weight:800; }
+    .mv-card p { margin:0; font-size:1.05rem; color:#415270; }
+
+    .section-title { font-size: clamp(1.4rem, 3vw, 2.1rem); line-height:1.25; margin: 40px 0 18px; text-align:center; font-weight:900; color:#1c2e59; }
+    .values-grid { display:grid; gap:14px; grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .value { background:#fff; border:1px solid #f0f0f0; border-radius:14px; padding:18px; box-shadow: 0 8px 22px rgba(0,0,0,.06); }
+    .value h5 { margin:.1rem 0 .45rem; font-size:1rem; font-weight:800; }
+    .value p { margin:0; font-size:.95rem; color:#556787; }
+
+    /* ====== Compromiso social ====== */
+    .social { margin-top: 8px; background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%); color:#fff; border-radius:20px; padding:28px; display:grid; grid-template-columns:1fr 1fr; gap:20px; box-shadow:0 18px 52px rgba(37,99,235,.25); }
+    .social h3 { margin:.2rem 0 .3rem; }
+    .social p { margin:.2rem 0; opacity:.95; }
+    .social .figs { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .pill { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25); border-radius:14px; padding:14px; text-align:center; }
+    .pill strong { display:block; font-size:1.25rem; }
+
+    /* ====== Footer ====== */
+    .footer { margin-top: 56px; border-top:1px solid rgba(0,0,0,.05); background: #f3f4f6; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 28px 16px; display:grid; gap:24px; grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .footer h4 { margin:.3rem 0 .6rem; font-size:1rem; font-weight:700; }
+    .footer a { display:block; margin:.35rem 0; font-size:.9rem; }
+    .footer a:hover { color:#0066ff; }
+    .footer-bottom { text-align:center; padding: 14px 16px 26px; color:#4b5563; font-size:.9rem; border-top: 2px solid #d1d5db; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 1024px) { .mv-grid { grid-template-columns:1fr; } .values-grid { grid-template-columns:repeat(2,1fr);} .social{ grid-template-columns:1fr; } }
+    @media (max-width: 768px) { .nav-menu { display:none; } .values-grid { grid-template-columns:1fr; } .hero { min-height:320px; padding:96px 16px 40px; } }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="https://lh4.googleusercontent.com/proxy/9mIXJpylWj80P77Xbim2sOyD7k3Z-ZCR8ipj1tjR1JUADemZqJT_EsOGu9EO-V4QNBYpRlnGdCXcERhIpdnIerlZzHrlfvxgEpONujxlbSknauw" alt="Oohel Logo">
+  <!-- ======= Header ======= -->
+  <header class="header" role="banner">
+    <div class="nav-container">
+      <a class="logo" href="index.html" aria-label="Ir al inicio">
+        <img src="https://lh4.googleusercontent.com/proxy/9mIXJpylWj80P77Xbim2sOyD7k3Z-ZCR8ipj1tjR1JUADemZqJT_EsOGu9EO-V4QNBYpRlnGdCXcERhIpdnIerlZzHrlfvxgEpONujxlbSknauw" alt="Oohel" loading="lazy">
+      </a>
+
+      <!-- Menú principal (como tu index) -->
+      <nav class="nav-menu" role="navigation" aria-label="Principal">
+        <div class="nav-item has-dropdown">
+          <a href="#oohel">Oohel</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="index.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="building-2"></i></span><span class="dropdown-text"><h5>Acerca de Nosotros</h5><p>Historia y filosofía</p></span></a>
+              <a href="mision-vision.html" class="dropdown-item" aria-current="page"><span class="dropdown-icon"><i data-lucide="target"></i></span><span class="dropdown-text"><h5>Misión y Visión</h5><p>Propósito y rumbo</p></span></a>
+              <a href="contactanos.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="mail"></i></span><span class="dropdown-text"><h5>Contáctanos</h5><p>Hablemos de tu proyecto</p></span></a>
+              <a href="index.html#services-section" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="package"></i></span><span class="dropdown-text"><h5>Productos</h5><p>Soluciones tecnológicas</p></span></a>
             </div>
-            <nav class="nav-menu">
-                <!-- MENU OOHEL -->
-                <div class="nav-item has-dropdown">
-                    <a href="#oohel">Oohel</a>
-                    <div class="dropdown" style="min-width: 300px;">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <div class="dropdown-grid">
-                                        <a href="index.html" class="dropdown-item">
-                                            <div class="dropdown-icon"><i data-lucide="building-2"></i></div>
-                                            <div class="dropdown-text">
-                                                <h5>Acerca de Nosotros</h5>
-                                                <p>Historia y filosofía de Oohel</p>
-                                            </div>
-                                        </a>
-                                        <a href="mision-vision.html" class="dropdown-item">
-                                            <div class="dropdown-icon"><i data-lucide="target"></i></div>
-                                            <div class="dropdown-text">
-                                                <h5>Nuestra Misión y Visión</h5>
-                                                <p>Nuestros objetivos y valores</p>
-                                            </div>
-                                        </a>
-                                        <a href="contactanos.html" class="dropdown-item">
-                                            <div class="dropdown-icon"><i data-lucide="mail"></i></div>
-                                            <div class="dropdown-text">
-                                                <h5>Contáctanos</h5>
-                                                <p>Hablemos de tu proyecto</p>
-                                            </div>
-                                        </a>
-                                        <a href="index.html#services-section" class="dropdown-item">
-                                            <div class="dropdown-icon"><i data-lucide="package"></i></div>
-                                            <div class="dropdown-text">
-                                                <h5>Nuestros Productos</h5>
-                                                <p>Soluciones tecnológicas</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INTELIGENCIA ARTIFICIAL -->
-                <div class="nav-item has-dropdown">
-                    <a href="#inteligencia-artificial">Inteligencia Artificial</a>
-                    <div class="dropdown">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <h4>Servicios de IA</h4>
-                                    <div class="accordion-menu">
-                                        <!-- Asistentes Virtuales -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="message-circle"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Asistentes Virtuales</h5>
-                                                    <p>Chatbots inteligentes para atención 24/7</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="bot"></i>
-                                                    <span>Chatbots Personalizados</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="mic"></i>
-                                                    <span>Asistentes de Voz</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="headphones"></i>
-                                                    <span>Soporte Automatizado</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="message-square"></i>
-                                                    <span>Chat en Tiempo Real</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Consultoría IA -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="lightbulb"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Consultoría IA</h5>
-                                                    <p>Estrategia e implementación de IA</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="target"></i>
-                                                    <span>Estrategia IA</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="settings"></i>
-                                                    <span>Implementación</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="search"></i>
-                                                    <span>Evaluación y Auditoría</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="trending-up"></i>
-                                                    <span>Optimización</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Agentes de IA -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="cpu"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Agentes de IA</h5>
-                                                    <p>Automatización inteligente de procesos</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="zap"></i>
-                                                    <span>Automatización RPA</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="cpu"></i>
-                                                    <span>Procesamiento NLP</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="eye"></i>
-                                                    <span>Visión Artificial</span>
-                                                </a>
-                                                <a href="inteligencia.html" class="side-menu-link">
-                                                    <i data-lucide="activity"></i>
-                                                    <span>Análisis Predictivo</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EDUCACION -->
-                <div class="nav-item has-dropdown">
-                    <a href="#educacion">Educación</a>
-                    <div class="dropdown">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <h4>Programas Educativos</h4>
-                                    <div class="accordion-menu">
-                                        <!-- Master Class -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="graduation-cap"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Master Class</h5>
-                                                    <p>Clases magistrales con expertos</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="brain"></i>
-                                                    <span>Inteligencia Artificial</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="cloud"></i>
-                                                    <span>Cloud Computing</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="shield"></i>
-                                                    <span>Ciberseguridad</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="smartphone"></i>
-                                                    <span>Desarrollo Mobile</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Bootcamps -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="code"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Bootcamps</h5>
-                                                    <p>Programas intensivos de programación</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="monitor"></i>
-                                                    <span>Full Stack Web</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="database"></i>
-                                                    <span>Data Science</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="git-branch"></i>
-                                                    <span>DevOps</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="palette"></i>
-                                                    <span>UX/UI Design</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Certificaciones -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="award"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Certificaciones</h5>
-                                                    <p>Programas con certificación oficial</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="aws"></i>
-                                                    <span>AWS Certified</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="microsoft"></i>
-                                                    <span>Microsoft Azure</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="google"></i>
-                                                    <span>Google Cloud</span>
-                                                </a>
-                                                <a href="educacion.html" class="side-menu-link">
-                                                    <i data-lucide="badge"></i>
-                                                    <span>Certificación Propia</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOPORTE TECNICO -->
-                <div class="nav-item has-dropdown">
-                    <a href="#soporte-tecnico">Soporte Técnico</a>
-                    <div class="dropdown">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <h4>Servicios de Soporte</h4>
-                                    <div class="accordion-menu">
-                                        <!-- Mantenimiento IT -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="wrench"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Mantenimiento IT</h5>
-                                                    <p>Preventivo y correctivo</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="calendar"></i>
-                                                    <span>Mantenimiento Preventivo</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="tool"></i>
-                                                    <span>Reparaciones</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="refresh-cw"></i>
-                                                    <span>Actualizaciones</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="hard-drive"></i>
-                                                    <span>Optimización</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Helpdesk 24/7 -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="phone"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Helpdesk 24/7</h5>
-                                                    <p>Soporte técnico continuo</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="phone-call"></i>
-                                                    <span>Soporte Telefónico</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="message-circle"></i>
-                                                    <span>Chat en Vivo</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="mail"></i>
-                                                    <span>Soporte por Email</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="monitor"></i>
-                                                    <span>Acceso Remoto</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Monitoreo -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="monitor"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Monitoreo</h5>
-                                                    <p>Supervisión proactiva de sistemas</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="activity"></i>
-                                                    <span>Monitoreo de Red</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="server"></i>
-                                                    <span>Servidores</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="shield-alert"></i>
-                                                    <span>Alertas Automáticas</span>
-                                                </a>
-                                                <a href="soporte.html" class="side-menu-link">
-                                                    <i data-lucide="bar-chart"></i>
-                                                    <span>Reportes</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HOSTING -->
-                <div class="nav-item has-dropdown">
-                    <a href="#hosting">Hosting</a>
-                    <div class="dropdown">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <h4>Planes de Hosting</h4>
-                                    <div class="accordion-menu">
-                                        <!-- Hosting Compartido -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="globe"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Hosting Compartido</h5>
-                                                    <p>Perfecto para sitios web básicos</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="rocket"></i>
-                                                    <span>Plan Básico</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="trending-up"></i>
-                                                    <span>Plan Intermedio</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="star"></i>
-                                                    <span>Plan Premium</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="wordpress"></i>
-                                                    <span>WordPress Optimizado</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- VPS -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="server"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>VPS</h5>
-                                                    <p>Servidor virtual dedicado</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="cpu"></i>
-                                                    <span>VPS Básico</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="zap"></i>
-                                                    <span>VPS Pro</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="shield"></i>
-                                                    <span>VPS Managed</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="settings"></i>
-                                                    <span>VPS Personalizado</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Cloud Hosting -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="cloud"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Cloud Hosting</h5>
-                                                    <p>Escalable y alta disponibilidad</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="cloud-rain"></i>
-                                                    <span>Multi Cloud</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="globe"></i>
-                                                    <span>CDN Global</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="database"></i>
-                                                    <span>Base de Datos Cloud</span>
-                                                </a>
-                                                <a href="hosting.html" class="side-menu-link">
-                                                    <i data-lucide="shield-check"></i>
-                                                    <span>Backup Automático</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOLUCIONES EMPRESARIALES -->
-                <div class="nav-item has-dropdown">
-                    <a href="#soluciones-empresariales">Soluciones Empresariales</a>
-                    <div class="dropdown">
-                        <div class="dropdown-container">
-                            <div class="dropdown-content">
-                                <div class="dropdown-section">
-                                    <h4>Sistemas Empresariales</h4>
-                                    <div class="accordion-menu">
-                                        <!-- ERP -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="clipboard-list"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>ERP</h5>
-                                                    <p>Gestión integral de recursos</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="package"></i>
-                                                    <span>Odoo ERP</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="dollar-sign"></i>
-                                                    <span>Finanzas y Contabilidad</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="truck"></i>
-                                                    <span>Inventario y Logística</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="users"></i>
-                                                    <span>Recursos Humanos</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- CRM -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="users"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>CRM</h5>
-                                                    <p>Gestión de relaciones con clientes</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="contact"></i>
-                                                    <span>Gestión de Contactos</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="trending-up"></i>
-                                                    <span>Pipeline de Ventas</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="mail"></i>
-                                                    <span>Marketing Automation</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="bar-chart"></i>
-                                                    <span>Reportes y Analytics</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Ciberseguridad -->
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                <div class="dropdown-icon"><i data-lucide="shield-check"></i></div>
-                                                <div class="dropdown-text">
-                                                    <h5>Ciberseguridad</h5>
-                                                    <p>Protección integral de datos</p>
-                                                </div>
-                                                <i data-lucide="chevron-right" class="accordion-arrow"></i>
-                                            </div>
-                                            <div class="side-menu">
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="shield"></i>
-                                                    <span>Firewall Avanzado</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="eye"></i>
-                                                    <span>Monitoreo de Amenazas</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="lock"></i>
-                                                    <span>Backup Seguro</span>
-                                                </a>
-                                                <a href="soluciones.html" class="side-menu-link">
-                                                    <i data-lucide="check-circle"></i>
-                                                    <span>Auditorías de Seguridad</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="nav-buttons">
-                <a href="#" class="btn btn-text">Iniciar sesión</a>
-                <a href="#" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Contáctanos</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section Específico para Misión y Visión -->
-    <section class="hero-mission">
-        <div class="hero-mission-container">
-            <h1>Nuestra Misión y Visión</h1>
-            <p>Conoce los valores fundamentales que guían cada decisión en Oohel Technologies y cómo trabajamos para transformar el futuro digital de las empresas.</p>
-        </div>
-    </section>
-
-    <!-- Misión, Visión y Valores -->
-    <section class="mission-vision-section">
-        <div class="mission-vision-grid">
-            <div class="mission-vision-card mission">
-                <h3><i data-lucide="target"></i> Nuestra Misión</h3>
-                <p>Transformar digitalmente a las empresas mediante soluciones tecnológicas innovadoras, educación especializada y soporte técnico de excelencia, impulsando su crecimiento y competitividad en la era digital.</p>
-            </div>
-            <div class="mission-vision-card vision">
-                <h3><i data-lucide="rocket"></i> Nuestra Visión</h3>
-                <p>Ser la empresa líder en soluciones tecnológicas integrales en América Latina, reconocida por nuestra innovación, calidad de servicio y capacidad de transformar negocios a través de la tecnología.</p>
-            </div>
+          </div>
         </div>
 
-        <div class="values-transformation-grid">
-            <div class="values-card">
-                <h3><i data-lucide="gem"></i> Nuestros Valores Fundamentales</h3>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <h4><i data-lucide="lightbulb"></i> Innovación</h4>
-                        <p>Constante búsqueda de nuevas tecnologías y metodologías para ofrecer soluciones de vanguardia.</p>
-                    </div>
-                    <div class="value-item">
-                        <h4><i data-lucide="heart"></i> Excelencia</h4>
-                        <p>Compromiso inquebrantable con la calidad y la satisfacción total del cliente en cada proyecto.</p>
-                    </div>
-                    <div class="value-item">
-                        <h4><i data-lucide="eye"></i> Transparencia</h4>
-                        <p>Comunicación clara, honesta y directa en todas nuestras relaciones comerciales.</p>
-                    </div>
-                    <div class="value-item">
-                        <h4><i data-lucide="users"></i> Colaboración</h4>
-                        <p>Trabajo en equipo y sinergia para alcanzar objetivos comunes con nuestros clientes y partners.</p>
-                    </div>
-                    <div class="value-item">
-                        <h4><i data-lucide="leaf"></i> Responsabilidad</h4>
-                        <p>Compromiso con el impacto social y ambiental positivo en nuestras operaciones.</p>
-                    </div>
-                    <div class="value-item">
-                        <h4><i data-lucide="trending-up"></i> Crecimiento</h4>
-                        <p>Desarrollo continuo del talento humano y evolución constante de nuestras capacidades.</p>
-                    </div>
-                </div>
+        <div class="nav-item has-dropdown">
+          <a href="#inteligencia-artificial">Inteligencia Artificial</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="inteligencia.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="message-circle"></i></span><span class="dropdown-text"><h5>Asistentes Virtuales</h5><p>Chatbots y voz 24/7</p></span></a>
+              <a href="inteligencia.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="cpu"></i></span><span class="dropdown-text"><h5>Agentes y Automatización</h5><p>RPA, NLP y visión</p></span></a>
+              <a href="inteligencia.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="lightbulb"></i></span><span class="dropdown-text"><h5>Consultoría IA</h5><p>Estrategia e implementación</p></span></a>
             </div>
+          </div>
         </div>
 
-        <h2 class="section-title" style="margin-top: 3rem;">Cómo Transformamos el Futuro Digital</h2>
-        <div class="values-card">
-            <h3><i data-lucide="wrench"></i> Nuestra Metodología de Transformación</h3>
-            <div class="values-grid">
-                <div class="value-item">
-                    <h4><i data-lucide="search"></i> Diagnóstico Integral</h4>
-                    <p>Análisis exhaustivo de la situación actual y identificación de oportunidades de mejora tecnológica.</p>
-                </div>
-                <div class="value-item">
-                    <h4><i data-lucide="map"></i> Estrategia Personalizada</h4>
-                    <p>Diseño de un roadmap tecnológico adaptado a las necesidades específicas de cada empresa.</p>
-                </div>
-                <div class="value-item">
-                    <h4><i data-lucide="settings"></i> Implementación Ágil</h4>
-                    <p>Despliegue eficiente de soluciones con metodologías ágiles y mejores prácticas del sector.</p>
-                </div>
-                <div class="value-item">
-                    <h4><i data-lucide="graduation-cap"></i> Capacitación Especializada</h4>
-                    <p>Formación del equipo humano para maximizar el aprovechamiento de las nuevas tecnologías.</p>
-                </div>
-                <div class="value-item">
-                    <h4><i data-lucide="headphones"></i> Soporte Continuo</h4>
-                    <p>Acompañamiento permanente y monitoreo proactivo para garantizar el éxito a largo plazo.</p>
-                </div>
-                <div class="value-item">
-                    <h4><i data-lucide="bar-chart-3"></i> Optimización Constante</h4>
-                    <p>Mejora continua basada en métricas, feedback y evolución de las necesidades del negocio.</p>
-                </div>
+        <div class="nav-item has-dropdown">
+          <a href="#educacion">Educación</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="educacion.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="graduation-cap"></i></span><span class="dropdown-text"><h5>Master Class</h5><p>Clases con expertos</p></span></a>
+              <a href="educacion.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="code"></i></span><span class="dropdown-text"><h5>Bootcamps</h5><p>Programas intensivos</p></span></a>
+              <a href="educacion.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="award"></i></span><span class="dropdown-text"><h5>Certificaciones</h5><p>Rutas oficiales</p></span></a>
             </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h4>Servicios</h4>
-                <a href="inteligencia.html">Inteligencia Artificial</a>
-                <a href="educacion.html">Educación</a>
-                <a href="hosting.html">Hosting</a>
-                <a href="soporte.html">Soporte Técnico</a>
+        <div class="nav-item has-dropdown">
+          <a href="#soporte">Soporte Técnico</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="soporte.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="wrench"></i></span><span class="dropdown-text"><h5>Mantenimiento IT</h5><p>Preventivo y correctivo</p></span></a>
+              <a href="soporte.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="phone"></i></span><span class="dropdown-text"><h5>Helpdesk 24/7</h5><p>Soporte continuo</p></span></a>
+              <a href="soporte.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="monitor"></i></span><span class="dropdown-text"><h5>Monitoreo</h5><p>Supervisión proactiva</p></span></a>
             </div>
-            <div class="footer-column">
-                <h4>Empresa</h4>
-                <a href="index.html">Acerca de</a>
-                <a href="#">Blog</a>
-                <a href="#">Carreras</a>
-                <a href="contactanos.html">Contacto</a>
-            </div>
-            <div class="footer-column">
-                <h4>Recursos</h4>
-                <a href="#">Documentación</a>
-                <a href="#">Centro de Ayuda</a>
-                <a href="#">Comunidad</a>
-                <a href="#">Plantillas</a>
-            </div>
-            <div class="footer-column">
-                <h4>Legal</h4>
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de Servicio</a>
-                <a href="#">Seguridad</a>
-                <a href="#">GDPR</a>
-            </div>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2024 Oohel. Todos los derechos reservados.</p>
+
+        <div class="nav-item has-dropdown">
+          <a href="#hosting">Hosting</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="hosting.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="globe"></i></span><span class="dropdown-text"><h5>Hosting Compartido</h5><p>Sitios web y blogs</p></span></a>
+              <a href="hosting.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="server"></i></span><span class="dropdown-text"><h5>VPS</h5><p>Potencia dedicada</p></span></a>
+              <a href="hosting.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="cloud"></i></span><span class="dropdown-text"><h5>Cloud Hosting</h5><p>Escalable y seguro</p></span></a>
+            </div>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.7)';
-                header.style.backdropFilter = 'blur(3px)';
-                header.style.webkitBackdropFilter = 'blur(3px)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.6)';
-                header.style.backdropFilter = 'none';
-                header.style.webkitBackdropFilter = 'none';
-                header.style.boxShadow = 'none';
-            }
-        });
+        <div class="nav-item has-dropdown">
+          <a href="#soluciones">Soluciones Empresariales</a>
+          <div class="dropdown" role="menu">
+            <div class="dropdown-content">
+              <a href="soluciones.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="clipboard-list"></i></span><span class="dropdown-text"><h5>ERP</h5><p>Gestión integral</p></span></a>
+              <a href="soluciones.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="users"></i></span><span class="dropdown-text"><h5>CRM</h5><p>Relación con clientes</p></span></a>
+              <a href="soluciones.html" class="dropdown-item"><span class="dropdown-icon"><i data-lucide="shield-check"></i></span><span class="dropdown-text"><h5>Ciberseguridad</h5><p>Protección de datos</p></span></a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+      <div class="nav-buttons">
+        <a href="#" class="btn btn-text">Iniciar sesión</a>
+        <a href="contactanos.html" class="btn btn-primary">Contáctanos</a>
+      </div>
+    </div>
+  </header>
 
-        // Initialize Lucide Icons
-        lucide.createIcons();
+  <!-- ======= Hero ======= -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Misión, Visión y Valores</h1>
+      <p>Talento + tecnología para transformar. Diseño claro, ordenado y profesional, en línea con tu sitio.</p>
+    </div>
+  </section>
 
-        // Cursor Trail Effect
-        const cursorTrail = [];
-        const trailLength = 8;
+  <!-- ======= Misión / Visión ======= -->
+  <section class="section" id="mision-vision">
+    <div class="mv-grid">
+      <article class="mv-card" aria-labelledby="tit-mision">
+        <h2 id="tit-mision">Nuestra Misión</h2>
+        <p>Impulsar la <strong>transformación digital</strong> de personas y organizaciones con soluciones tecnológicas <strong>innovadoras, seguras y medibles</strong>, priorizando la experiencia y resultados sostenibles.</p>
+      </article>
+      <article class="mv-card" aria-labelledby="tit-vision">
+        <h2 id="tit-vision">Nuestra Visión</h2>
+        <p>Ser el <strong>aliado estratégico</strong> preferido en Latinoamérica para integrar <strong>talento</strong> y <strong>tecnología</strong>, elevando la competitividad de nuestros clientes con proyectos claros y confiables.</p>
+      </article>
+    </div>
 
-        // Create trail elements
-        for (let i = 0; i < trailLength; i++) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = '-100px';
-            trail.style.top = '-100px';
-            document.body.appendChild(trail);
-            cursorTrail.push(trail);
-        }
+    <h3 class="section-title">Nuestros Valores</h3>
+    <div class="values-grid" role="list">
+      <div class="value" role="listitem"><h5>Integridad</h5><p>Transparencia y responsabilidad en cada entrega.</p></div>
+      <div class="value" role="listitem"><h5>Excelencia</h5><p>Calidad técnica y humana, con mejora continua.</p></div>
+      <div class="value" role="listitem"><h5>Colaboración</h5><p>Co-creación con clientes y partners para metas compartidas.</p></div>
+      <div class="value" role="listitem"><h5>Innovación</h5><p>Adopción práctica de tecnologías que generan valor.</p></div>
+    </div>
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let currentTrail = 0;
+    <!-- Compromiso social -->
+    <h3 class="section-title">Nuestro compromiso social</h3>
+    <div class="social" aria-labelledby="tit-social">
+      <div>
+        <h3 id="tit-social">Con la comunidad</h3>
+        <p>En Oohel creemos que la tecnología debe ir de la mano con la <strong>solidaridad</strong> y la <strong>educación</strong>.</p>
+        <p>Como equipo hemos <strong>reunido 500&nbsp;kg de arroz</strong> para bancos de alimentos y <strong>otorgamos becas</strong> para impulsar el desarrollo académico.</p>
+        <p>Estas iniciativas reflejan nuestros valores: integridad, colaboración, excelencia e innovación.</p>
+      </div>
+      <div class="figs">
+        <div class="pill"><strong>500 kg</strong><span>Arroz donado</span></div>
+        <div class="pill"><strong>Becas</strong><span>Apoyo a estudiantes</span></div>
+      </div>
+    </div>
+  </section>
 
-        // Update mouse position
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+  <!-- ======= Footer ======= -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Oohel</h4>
+        <a href="index.html">Inicio</a>
+        <a href="mision-vision.html" aria-current="page">Misión y Visión</a>
+        <a href="nosotros.html">Sobre nosotros</a>
+        <a href="contactanos.html">Contáctanos</a>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="inteligencia.html">Inteligencia Artificial</a>
+        <a href="soporte.html">Soporte Técnico</a>
+        <a href="hosting.html">Hosting</a>
+      </div>
+      <div>
+        <h4>Soluciones</h4>
+        <a href="soluciones.html">ERP</a>
+        <a href="soluciones.html">CRM</a>
+        <a href="soluciones.html">Ciberseguridad</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="#">Blog</a>
+        <a href="#">Casos de éxito</a>
+        <a href="#">Soporte</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> Oohel — Todos los derechos reservados</div>
+  </footer>
 
-        // Animate trail
-        function animateTrail() {
-            const trail = cursorTrail[currentTrail];
-            trail.style.left = mouseX - 4 + 'px';
-            trail.style.top = mouseY - 4 + 'px';
-            trail.style.opacity = '0.8';
-            
-            // Fade out effect
-            setTimeout(() => {
-                trail.style.opacity = '0';
-            }, 50);
+  <script>
+    // Año automático en el footer
+    document.querySelector('#year').textContent = new Date().getFullYear();
 
-            currentTrail = (currentTrail + 1) % trailLength;
-        }
+    // Efecto de header al hacer scroll (más sólido)
+    const header = document.querySelector('.header');
+    const toggleHeader = () => { if (window.scrollY > 8) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+    toggleHeader(); window.addEventListener('scroll', toggleHeader);
 
-        // Run trail animation
-        setInterval(animateTrail, 30);
-
-        // Hide trail when mouse leaves window
-        document.addEventListener('mouseleave', () => {
-            cursorTrail.forEach(trail => {
-                trail.style.opacity = '0';
-            });
-        });
-
-        // Show trail when mouse enters window
-        document.addEventListener('mouseenter', () => {
-            cursorTrail.forEach(trail => {
-                trail.style.opacity = '0.6';
-            });
-        });
-    </script>
+    // Activar iconos Lucide
+    window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+  </script>
 </body>
 </html>
